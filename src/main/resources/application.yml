@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: book_service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        lob:
+          use_typed: true
+        format_sql: true
+    open-in-view: false
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+application:
+  security:
+    jwt:
+      secret-key: 5eekxbfUrc9marV/33k0yzgFxcuIHwIJyQ/IUd7HOMA=
+    this-service-secret-api-key: "ahgNSFHEKdbmrVvmKV2GmDGRTOzVAjsJD8k7crjR5yM="
