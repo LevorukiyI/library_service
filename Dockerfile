@@ -4,7 +4,7 @@ RUN yum install -y binutils
 RUN mkdir /usr/src/project
 COPY . /usr/src/project
 WORKDIR /usr/src/project
-RUN mvn package -DskipTests
+RUN mvn package -DskipTests -P docker
 RUN jar xf target/library_service-0.0.1-SNAPSHOT.jar
 RUN jdeps --ignore-missing-deps  \
     -q \
@@ -26,6 +26,3 @@ RUN mkdir /project/
 COPY --from=build /usr/src/project/target/library_service-0.0.1-SNAPSHOT.jar /project/
 WORKDIR /project
 ENTRYPOINT ["java", "-jar", "library_service-0.0.1-SNAPSHOT.jar"]
-
-
-

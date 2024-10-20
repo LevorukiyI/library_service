@@ -1,5 +1,6 @@
 package com.modsensoftware.library_service.utils;
 
+import com.modsensoftware.library_service.security.utils.HttpRequestUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

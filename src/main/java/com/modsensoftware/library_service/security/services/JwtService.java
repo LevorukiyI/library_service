@@ -1,4 +1,4 @@
-package com.modsensoftware.library_service.services;
+package com.modsensoftware.library_service.security.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

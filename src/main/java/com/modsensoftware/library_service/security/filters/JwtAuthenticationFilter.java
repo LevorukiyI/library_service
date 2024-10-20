@@ -1,7 +1,7 @@
-package com.modsensoftware.library_service.config;
+package com.modsensoftware.library_service.security.filters;
 
-import com.modsensoftware.library_service.services.JwtService;
-import com.modsensoftware.library_service.utils.HttpRequestUtils;
+import com.modsensoftware.library_service.security.services.JwtService;
+import com.modsensoftware.library_service.security.utils.HttpRequestUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.modsensoftware.library_service.models;
+package com.modsensoftware.library_service.security.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

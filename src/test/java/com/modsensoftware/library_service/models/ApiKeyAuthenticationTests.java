@@ -1,5 +1,6 @@
 package com.modsensoftware.library_service.models;
 
+import com.modsensoftware.library_service.security.models.ApiKeyAuthentication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.GrantedAuthority;

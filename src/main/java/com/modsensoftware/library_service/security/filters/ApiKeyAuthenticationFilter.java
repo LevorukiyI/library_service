@@ -1,8 +1,8 @@
-package com.modsensoftware.library_service.config;
+package com.modsensoftware.library_service.security.filters;
 
-import com.modsensoftware.library_service.authorities.Role;
-import com.modsensoftware.library_service.models.ApiKeyAuthentication;
-import com.modsensoftware.library_service.utils.HttpRequestUtils;
+import com.modsensoftware.library_service.security.models.authorities.Role;
+import com.modsensoftware.library_service.security.models.ApiKeyAuthentication;
+import com.modsensoftware.library_service.security.utils.HttpRequestUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

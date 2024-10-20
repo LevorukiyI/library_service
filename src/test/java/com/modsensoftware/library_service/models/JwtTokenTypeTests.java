@@ -1,5 +1,6 @@
 package com.modsensoftware.library_service.models;
 
+import com.modsensoftware.library_service.security.models.JwtTokenType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

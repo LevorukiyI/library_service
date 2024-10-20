@@ -1,5 +1,7 @@
-package com.modsensoftware.library_service.config;
+package com.modsensoftware.library_service.config.security;
 
+import com.modsensoftware.library_service.security.filters.ApiKeyAuthenticationFilter;
+import com.modsensoftware.library_service.security.filters.JwtAuthenticationFilter;
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

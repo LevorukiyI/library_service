@@ -1,4 +1,4 @@
-package com.modsensoftware.library_service.authorities;
+package com.modsensoftware.library_service.security.models.authorities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,9 +15,19 @@ public enum Role {
                     Permission.BREATHE
             )
     ),
+    LIBRARY_WORKER(
+            Set.of(
+                    Permission.RETURN_BOOK_FOR_USER,
+                    Permission.BORROW_BOOK_ON_USER,
+                    Permission.REGISTER_LIBRARY_SERVICE_USER
+            )
+    ),
     SECRET_KEY(
             Set.of(
-                    Permission.BREATHE
+                    Permission.BREATHE,
+                    Permission.RETURN_BOOK_FOR_USER,
+                    Permission.BORROW_BOOK_ON_USER,
+                    Permission.REGISTER_LIBRARY_SERVICE_USER
             )
     );
 
