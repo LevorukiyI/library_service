@@ -29,11 +29,11 @@ public class LibraryController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "book moved from library to user loan **successfully**",
                     content = @Content(schema = @Schema(implementation = BookLoanResponse.class))),
-            @ApiResponse(responseCode = "404", description = "book_service client cant find book with your specified book id",
-                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
-            @ApiResponse(responseCode = "404", description = "here is no user with subject, that you specified",
-                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
-            @ApiResponse(responseCode = "404", description = "library inventory has no book with id, that you specified",
+            @ApiResponse(responseCode = "404",
+                    description = "a specific error description will be passed to the ExceptionResponse. <br>"
+                            + "book_service client cant find book with your specified book id <br>"
+                            + "**OR** there is no user with subject, that you specified <br>"
+                            + "**OR** library inventory has no book with id, that you specified <br>",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
             @ApiResponse(responseCode = "503", description = "it is not possible to connect to the book_service on which this service depends",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
@@ -54,8 +54,17 @@ public class LibraryController {
     }
 
     @Operation(
-            summary = "return one book with id - bookID. From user with subject - booksOwnerSubject"
+            summary = "return ONE book with id - bookID. From user with subject - booksOwnerSubject"
     )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "book moved from user loan to library **successfully**"),
+            @ApiResponse(responseCode = "404", description = "a specific error description will be passed to the ExceptionResponse.<br>"
+                    + "There is no user with subject, that you specified <br>"
+                    + "**OR** There is no book loan with bookId and user subject, that you specified <br>",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "quantity of books in user loan is lesser then in quantity, that you trying to return.",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
+    })
     @PreAuthorize("hasAuthority('PERMISSION_RETURN_BOOK_FOR_USER')")
     @PostMapping("/return-book")
     public ResponseEntity<HttpStatus> returnBook(

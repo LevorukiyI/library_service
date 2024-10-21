@@ -1,4 +1,4 @@
-package com.modsensoftware.library_service.utils;
+package com.modsensoftware.library_service.security.utils;
 
 import com.modsensoftware.library_service.security.utils.HttpRequestUtils;
 import jakarta.servlet.http.HttpServletRequest;

@@ -34,7 +34,7 @@ public class BookServiceClient {
                     entity,
                     BookDTO.class
             );
-        } catch (RestClientException e) { // Обработайте исключение при недоступности сервиса
+        } catch (RestClientException e) {
             throw new BookServiceUnavailableException(e);
         }
     }

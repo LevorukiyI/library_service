@@ -74,9 +74,9 @@ public class LibraryService {
 
     public void returnBook(ReturnBookRequest returnBookRequest){
         returnBooks(
-                returnBookRequest.getBookId(),
+                returnBookRequest.bookId(),
                 1L,
-                returnBookRequest.getBooksOwnerSubject()
+                returnBookRequest.booksOwnerSubject()
         );
     }
 
@@ -87,7 +87,7 @@ public class LibraryService {
                 .orElseThrow(() -> new BookLoanNotFoundException(bookId, user.getId()));
 
         LoanBookQuantity userLoanBookQuantity = bookLoan.getLoanBookQuantity();
-        LibraryBookQuantity libraryBookQuantity = libraryInventory.findBookQuantityByBookId(bookId);
+        LibraryBookQuantity libraryBookQuantity = libraryInventory.findOrCreateBookQuantityByBookId(bookId);
         if(userLoanBookQuantity.getQuantity().equals(quantityToReturn)){
             libraryInventory.addBooksTo(libraryBookQuantity, quantityToReturn);
             bookLoanRepository.delete(bookLoan);

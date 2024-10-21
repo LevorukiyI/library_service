@@ -23,4 +23,9 @@ public class BookQuantity {
     @Column(nullable = false)
     @Min(0)
     private Long quantity;
+
+    public BookQuantity(Long bookId, Long quantity){
+        this.bookId = bookId;
+        this.quantity = quantity;
+    }
 }

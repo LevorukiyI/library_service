@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 
 public record BookLoanResponse(
-
     @Schema(description = "Unique identifier for the book.", example = "12")
     Long bookId,
 

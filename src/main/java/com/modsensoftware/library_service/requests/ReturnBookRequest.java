@@ -1,15 +1,12 @@
 package com.modsensoftware.library_service.requests;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@Data
-@Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
-public class ReturnBookRequest {
-    private Long bookId;
-    private String booksOwnerSubject;
+public record ReturnBookRequest (
+        @Schema(description = "id of the book, that you want to return", example = "12")
+    Long bookId,
+
+    @Schema(description = "subject of user who owns the book, with id bookId")
+    String booksOwnerSubject
+){
 }

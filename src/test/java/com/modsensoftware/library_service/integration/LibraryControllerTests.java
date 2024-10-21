@@ -12,6 +12,7 @@ import com.modsensoftware.library_service.requests.*;
 import com.modsensoftware.library_service.responses.BookLoanResponse;
 import com.modsensoftware.library_service.services.LibraryInventoryService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,7 +62,7 @@ public class LibraryControllerTests {
     @Value("${application.security.this-service-secret-api-key}")
     private String thisServiceSecretKey;
 
-    private final String thisServiceBaseUrl = "http://localhost:8081/library" ;
+    private final String thisServiceBaseUrl = "http://localhost:8082/library" ;
 
     @BeforeEach
     public void setUp() {
@@ -145,10 +146,10 @@ public class LibraryControllerTests {
 
         this.sendRequestBorrowBookByIdOnDays(borrowBookByIdOnDaysRequest);
 
-        ReturnBookRequest returnBookRequest = ReturnBookRequest.builder()
-                .booksOwnerSubject(testUser.getSubject())
-                .bookId(bookId)
-                .build();
+        ReturnBookRequest returnBookRequest = new ReturnBookRequest(
+                bookId,
+                testUser.getSubject()
+        );
 
         ResponseEntity<?> responseEntity = sendRequestReturnBook(returnBookRequest);
 

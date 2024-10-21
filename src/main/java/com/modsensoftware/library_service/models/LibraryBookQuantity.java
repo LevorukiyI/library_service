@@ -11,4 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class LibraryBookQuantity extends BookQuantity {
+    public LibraryBookQuantity(Long bookId, Long quantity){
+        super(bookId, quantity);
+    }
 }

@@ -12,6 +12,11 @@ public class LibraryInventoryService extends BookQuantityService<LibraryBookQuan
 
     private final LibraryBookQuantityRepository libraryBookQuantityRepository;
 
+    public LibraryBookQuantity findOrCreateBookQuantityByBookId(Long bookId){
+        return libraryBookQuantityRepository.findByBookId(bookId)
+                .orElseGet(() -> new LibraryBookQuantity(bookId, 0L));
+    }
+
     public LibraryBookQuantity findBookQuantityByBookId(Long bookId) {
         return libraryBookQuantityRepository.findByBookId(bookId)
                 .orElseThrow(() -> new LibraryInventoryBookNotFoundException(bookId));
