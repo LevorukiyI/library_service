@@ -20,5 +20,9 @@ application:
       secret-key: 5eekxbfUrc9marV/33k0yzgFxcuIHwIJyQ/IUd7HOMA=
     this-service-secret-api-key: "ahgNSFHEKdbmrVvmKV2GmDGRTOzVAjsJD8k7crjR5yM="
 
+book-service:
+  base-url: ${BOOK_SERVICE_BASE_URL}
+  secret-key: "4Ai+5X3ZuK4J+T44sp0RDL48WeieeIq0boPRJb89MMU="
+
 server:
   port: 8082

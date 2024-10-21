@@ -3,7 +3,3 @@ spring:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-
-book-service:
-  base-url: ${BOOK_SERVICE_BASE_URL}
-  secret-key: "4Ai+5X3ZuK4J+T44sp0RDL48WeieeIq0boPRJb89MMU="
