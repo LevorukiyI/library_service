@@ -6,4 +6,4 @@ spring:
 
 book-service:
   base-url: ${BOOK_SERVICE_BASE_URL}
-  secret-key: ${BOOK_SERVICE_SECRET_API_KEY}
+  secret-key: "4Ai+5X3ZuK4J+T44sp0RDL48WeieeIq0boPRJb89MMU="
