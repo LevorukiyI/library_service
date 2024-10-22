@@ -5,12 +5,10 @@ import com.modsensoftware.library_service.dtos.BookDTO;
 import com.modsensoftware.library_service.exceptions.BookLoanNotFoundException;
 import com.modsensoftware.library_service.exceptions.BookServiceBookNotFoundException;
 import com.modsensoftware.library_service.exceptions.UserNotFoundException;
-import com.modsensoftware.library_service.models.BookLoanEntity;
-import com.modsensoftware.library_service.models.LibraryBookQuantity;
-import com.modsensoftware.library_service.models.LoanBookQuantity;
-import com.modsensoftware.library_service.models.User;
+import com.modsensoftware.library_service.models.*;
 import com.modsensoftware.library_service.repositories.BookLoanRepository;
 import com.modsensoftware.library_service.repositories.UserRepository;
+import com.modsensoftware.library_service.requests.AddBooksToLibraryRequest;
 import com.modsensoftware.library_service.requests.BorrowBookByIdOnDaysRequest;
 import com.modsensoftware.library_service.requests.ReturnBookRequest;
 import com.modsensoftware.library_service.responses.BookLoanResponse;
@@ -94,6 +92,18 @@ public class LibraryService {
         } else {
             loanBookQuantityService.removeBooksFrom(userLoanBookQuantity, quantityToReturn);
         }
+    }
+
+    public void addBooksToLibrary(AddBooksToLibraryRequest addBooksToLibraryRequest){
+        ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(addBooksToLibraryRequest.bookId());
+        if (bookResponse.getStatusCode() != HttpStatus.OK) {
+            throw new BookServiceBookNotFoundException(addBooksToLibraryRequest.bookId());
+        }
+        LibraryBookQuantity libraryBookQuantity
+                = libraryInventory.findOrCreateBookQuantityByBookId(
+                addBooksToLibraryRequest.bookId()
+        );
+        libraryInventory.addBooksTo(libraryBookQuantity, addBooksToLibraryRequest.quantity());
     }
 
 }

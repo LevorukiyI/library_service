@@ -13,8 +13,12 @@ public class LibraryInventoryService extends BookQuantityService<LibraryBookQuan
     private final LibraryBookQuantityRepository libraryBookQuantityRepository;
 
     public LibraryBookQuantity findOrCreateBookQuantityByBookId(Long bookId){
+        return this.findOrCreateBookQuantityByBookId(bookId, 0L);
+    }
+
+    public LibraryBookQuantity findOrCreateBookQuantityByBookId(Long bookId, Long quantity){
         return libraryBookQuantityRepository.findByBookId(bookId)
-                .orElseGet(() -> new LibraryBookQuantity(bookId, 0L));
+                .orElseGet(() -> new LibraryBookQuantity(bookId, quantity));
     }
 
     public LibraryBookQuantity findBookQuantityByBookId(Long bookId) {

@@ -1,5 +1,6 @@
 package com.modsensoftware.library_service.controllers;
 
+import com.modsensoftware.library_service.requests.AddBooksToLibraryRequest;
 import com.modsensoftware.library_service.requests.BorrowBookByIdOnDaysRequest;
 import com.modsensoftware.library_service.requests.ReturnBookRequest;
 import com.modsensoftware.library_service.responses.BookLoanResponse;
@@ -22,6 +23,33 @@ import org.springframework.web.bind.annotation.*;
 public class LibraryController {
 
     private final LibraryService libraryService;
+
+    @Operation(
+            summary = "add book to library",
+            description = "It's necessary to add book to book_service before.<br>"
+                    + "add book to library with bookId and quantity, that you specify."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "book moved from library to user loan **successfully**",
+                    content = @Content(schema = @Schema(implementation = BookLoanResponse.class))),
+            @ApiResponse(responseCode = "404",
+                    description = "a specific error description will be passed to the ExceptionResponse. <br>"
+                            + "book_service client cant find book with your specified book id <br>",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "503", description = "it is not possible to connect to the book_service on which this service depends",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+    })
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            content = @Content(schema = @Schema(implementation = AddBooksToLibraryRequest.class))
+    )
+    @PreAuthorize("hasAuthority('PERMISSION_ADD_BOOKS_TO_LIBRARY')")
+    @PostMapping("/add-books-to-library")
+    public ResponseEntity<HttpStatus> addBookToLibrary(
+            @RequestBody AddBooksToLibraryRequest addBooksToLibraryRequest
+    ) {
+                libraryService.addBooksToLibrary(addBooksToLibraryRequest);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 
     @Operation(
             summary = "get book by id on user with subject"
