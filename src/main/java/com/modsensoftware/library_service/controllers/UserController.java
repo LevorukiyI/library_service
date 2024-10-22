@@ -5,6 +5,7 @@ import com.modsensoftware.library_service.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,8 @@ public class UserController {
     private final UserService userService;
 
     @Operation(
-            summary = "register user in database"
+            summary = "register user in database",
+            security = @SecurityRequirement(name = "x-api-key")
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User registered successfully"),
