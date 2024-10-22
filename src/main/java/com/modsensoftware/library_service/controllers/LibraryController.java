@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ public class LibraryController {
     @Operation(
             summary = "add book to library",
             description = "It's necessary to add book to book_service before.<br>"
-                    + "add book to library with bookId and quantity, that you specify."
+                    + "add book to library with bookId and quantity, that you specify.",
+            security = @SecurityRequirement(name = "Bearer")
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "book moved from library to user loan **successfully**",
@@ -52,7 +54,8 @@ public class LibraryController {
     }
 
     @Operation(
-            summary = "get book by id on user with subject"
+            summary = "get book by id on user with subject",
+            security = @SecurityRequirement(name = "Bearer")
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "book moved from library to user loan **successfully**",
@@ -82,7 +85,8 @@ public class LibraryController {
     }
 
     @Operation(
-            summary = "return ONE book with id - bookID. From user with subject - booksOwnerSubject"
+            summary = "return ONE book with id - bookID. From user with subject - booksOwnerSubject",
+            security = @SecurityRequirement(name = "Bearer")
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "book moved from user loan to library **successfully**"),
