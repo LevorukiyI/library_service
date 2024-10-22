@@ -15,7 +15,8 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT",
         description = "Use 'Bearer access_token' to authorize.")
 @SecurityScheme(name = "x-api-key",
-        type = SecuritySchemeType.APIKEY,
+        type = SecuritySchemeType.HTTP,
+        scheme = "x-api-key",
         in = SecuritySchemeIn.HEADER,
         paramName = "x-api-key",
         description = "Use 'x-api-key secret_api_key' to authorize.")
