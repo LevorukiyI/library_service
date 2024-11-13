@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/actuator")
 public class ActuatorController {
-    @Operation(summary = "Проверка состояния сервиса. Поднят он или нет.",
-            description = "в случае если сервис поднят, будет возвращен ответ **UP**")
+    @Operation(summary = "Check the service status. Whether it is up or not.",
+            description = "If the service is up, the response **UP** will be returned.")
     @ApiResponse(
-            responseCode = "200", description = "сервис поднят"
+            responseCode = "200", description = "The service is up"
     )
     @GetMapping("/health")
     public ResponseEntity<String> health() {

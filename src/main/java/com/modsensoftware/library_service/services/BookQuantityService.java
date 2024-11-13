@@ -2,9 +2,11 @@ package com.modsensoftware.library_service.services;
 
 import com.modsensoftware.library_service.exceptions.BookOutOfStockException;
 import com.modsensoftware.library_service.models.BookQuantity;
+import org.springframework.transaction.annotation.Transactional;
 
 public abstract class BookQuantityService<T extends BookQuantity> {
 
+    @Transactional
     public void removeBooksFrom(T bookQuantity, Long quantity){
 
         long finalBookQuantity = bookQuantity.getQuantity() - quantity;
@@ -17,11 +19,13 @@ public abstract class BookQuantityService<T extends BookQuantity> {
         saveBookQuantity(bookQuantity);
     }
 
+    @Transactional
     public void addBooksTo(T bookQuantity, Long quantity){
         bookQuantity.setQuantity(bookQuantity.getQuantity() + quantity);
         saveBookQuantity(bookQuantity);
     }
 
+    @Transactional
     public abstract void saveBookQuantity(T bookQuantity);
 
 }

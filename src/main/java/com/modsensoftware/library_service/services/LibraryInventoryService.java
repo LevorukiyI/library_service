@@ -5,6 +5,7 @@ import com.modsensoftware.library_service.models.LibraryBookQuantity;
 import com.modsensoftware.library_service.repositories.LibraryBookQuantityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +28,7 @@ public class LibraryInventoryService extends BookQuantityService<LibraryBookQuan
     }
 
     @Override
+    @Transactional
     public void saveBookQuantity(LibraryBookQuantity bookQuantity) {
         libraryBookQuantityRepository.save(bookQuantity);
     }

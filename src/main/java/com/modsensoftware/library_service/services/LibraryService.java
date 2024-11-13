@@ -16,6 +16,7 @@ import com.modsensoftware.library_service.utils.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Objects;
@@ -31,6 +32,7 @@ public class LibraryService {
     private final BookLoanRepository bookLoanRepository;
     private final UserRepository userRepository;
 
+    @Transactional
     public BookLoanResponse borrowBookOnDays(
         BorrowBookByIdOnDaysRequest borrowBookByIdOnDaysRequest
     ) {
@@ -42,6 +44,7 @@ public class LibraryService {
         );
     }
 
+    @Transactional
     public BookLoanResponse borrowBooksOnMillis(
             Long bookId,
             Long millisecondsOfLoan,
@@ -70,6 +73,7 @@ public class LibraryService {
         return Mapper.from(bookLoanEntity);
     }
 
+    @Transactional
     public void returnBook(ReturnBookRequest returnBookRequest){
         returnBooks(
                 returnBookRequest.bookId(),
@@ -78,6 +82,7 @@ public class LibraryService {
         );
     }
 
+    @Transactional
     public void returnBooks(Long bookId, Long quantityToReturn, String booksOwnerSubject) {
         User user = userRepository.findBySubject(booksOwnerSubject)
                 .orElseThrow(UserNotFoundException::new);
@@ -94,6 +99,7 @@ public class LibraryService {
         }
     }
 
+    @Transactional
     public void addBooksToLibrary(AddBooksToLibraryRequest addBooksToLibraryRequest){
         ResponseEntity<BookDTO> bookResponse = bookServiceClient.getBookById(addBooksToLibraryRequest.bookId());
         if (bookResponse.getStatusCode() != HttpStatus.OK) {
