@@ -20,7 +20,9 @@ public enum Role {
                     Permission.RETURN_BOOK_FOR_USER,
                     Permission.BORROW_BOOK_ON_USER,
                     Permission.REGISTER_LIBRARY_SERVICE_USER,
-                    Permission.ADD_BOOKS_TO_LIBRARY
+                    Permission.ADD_BOOKS_TO_LIBRARY,
+                    Permission.GET_ALL_LIBRARY_BOOKS,
+                    Permission.GET_LOANS_BY_USER
             )
     ),
     SECRET_KEY(
@@ -29,7 +31,9 @@ public enum Role {
                     Permission.RETURN_BOOK_FOR_USER,
                     Permission.BORROW_BOOK_ON_USER,
                     Permission.ADD_BOOKS_TO_LIBRARY,
-                    Permission.REGISTER_LIBRARY_SERVICE_USER
+                    Permission.GET_ALL_LIBRARY_BOOKS,
+                    Permission.REGISTER_LIBRARY_SERVICE_USER,
+                    Permission.GET_LOANS_BY_USER
             )
     );
 

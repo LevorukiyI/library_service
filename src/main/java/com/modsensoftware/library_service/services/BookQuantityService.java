@@ -20,9 +20,10 @@ public abstract class BookQuantityService<T extends BookQuantity> {
     }
 
     @Transactional
-    public void addBooksTo(T bookQuantity, Long quantity){
+    public T addBooksTo(T bookQuantity, Long quantity){
         bookQuantity.setQuantity(bookQuantity.getQuantity() + quantity);
         saveBookQuantity(bookQuantity);
+        return bookQuantity;
     }
 
     @Transactional

@@ -1,20 +1,19 @@
 package com.modsensoftware.library_service.requests;
 
+import com.modsensoftware.library_service.dtos.requests.BorrowBookOnDaysRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BorrowBookByIdOnDaysRequestTests {
+class BorrowBookOnDaysRequestTests {
 
     @Test
     void testBorrowBookByIdOnDaysRequestConstructor() {
-        Long bookId = 12L;
         Long daysOfLoan = 7L;
         String bookOwnerSubject = "user123";
 
-        BorrowBookByIdOnDaysRequest request = new BorrowBookByIdOnDaysRequest(bookId, daysOfLoan, bookOwnerSubject);
+        BorrowBookOnDaysRequest request = new BorrowBookOnDaysRequest(daysOfLoan, bookOwnerSubject);
 
-        assertEquals(bookId, request.bookId());
         assertEquals(daysOfLoan, request.daysOfLoan());
         assertEquals(bookOwnerSubject, request.bookOwnerSubject());
     }

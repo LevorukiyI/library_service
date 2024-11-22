@@ -2,7 +2,7 @@ package com.modsensoftware.library_service.exceptions;
 
 import com.modsensoftware.library_service.exceptions.handlers.DatabaseExceptionHandler;
 import com.modsensoftware.library_service.exceptions.handlers.GlobalExceptionHandler;
-import com.modsensoftware.library_service.responses.ExceptionResponse;
+import com.modsensoftware.library_service.exceptions.responses.ExceptionResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -37,11 +37,11 @@ class ExceptionHandlerTests {
 
     @Test
     void testHandleSpecificExceptionWithResponseStatus() {
-        BookLoanNotFoundException exception = new BookLoanNotFoundException(1L, 2L);
+        BookLoanNotFoundException exception = new BookLoanNotFoundException(1L);
 
         ResponseEntity<ExceptionResponse> response = globalExceptionHandler.handleAllExceptions(exception);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("There is no book loan with bookId: 1; and userId: 2;", response.getBody().errorMessage());
+        assertEquals("There is no book loan with loanId: 1;", response.getBody().errorMessage());
     }
 }

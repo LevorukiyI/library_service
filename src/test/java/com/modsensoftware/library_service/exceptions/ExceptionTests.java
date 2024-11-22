@@ -8,12 +8,11 @@ class ExceptionTests {
 
     @Test
     void testBookLoanNotFoundException() {
-        Long bookId = 1L;
-        Long userId = 2L;
+        Long loanId = 1L;
 
-        BookLoanNotFoundException exception = new BookLoanNotFoundException(bookId, userId);
+        BookLoanNotFoundException exception = new BookLoanNotFoundException(loanId);
 
-        assertEquals("There is no book loan with bookId: 1; and userId: 2;", exception.getMessage());
+        assertEquals("There is no book loan with loanId: 1;", exception.getMessage());
     }
 
     @Test
@@ -29,18 +28,18 @@ class ExceptionTests {
 
     @Test
     void testBookServiceBookNotFoundException() {
-        Long bookId = 1L;
+        Long loanId = 1L;
 
-        BookServiceBookNotFoundException exception = new BookServiceBookNotFoundException(bookId);
+        BookServiceBookNotFoundException exception = new BookServiceBookNotFoundException(loanId);
 
         assertEquals("book_service client cant find book with id:1", exception.getMessage());
     }
 
     @Test
     void testLibraryInventoryBookNotFoundException() {
-        Long bookId = 1L;
+        Long loanId = 1L;
 
-        LibraryInventoryBookNotFoundException exception = new LibraryInventoryBookNotFoundException(bookId);
+        LibraryInventoryBookNotFoundException exception = new LibraryInventoryBookNotFoundException(loanId);
 
         assertEquals("library inventory has no book with id: 1", exception.getMessage());
     }

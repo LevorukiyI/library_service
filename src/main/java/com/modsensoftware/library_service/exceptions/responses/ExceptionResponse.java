@@ -1,4 +1,4 @@
-package com.modsensoftware.library_service.responses;
+package com.modsensoftware.library_service.exceptions.responses;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

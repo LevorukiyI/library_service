@@ -1,10 +1,10 @@
 package com.modsensoftware.library_service.utils;
 
-import com.modsensoftware.library_service.dtos.BookDTO;
+import com.modsensoftware.library_service.clients.dtos.BookDTO;
 import com.modsensoftware.library_service.models.BookLoanEntity;
 import com.modsensoftware.library_service.models.LoanBookQuantity;
 import com.modsensoftware.library_service.models.User;
-import com.modsensoftware.library_service.responses.BookLoanResponse;
+import com.modsensoftware.library_service.dtos.responses.BookLoanResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -18,7 +18,7 @@ class MapperTests {
         LoanBookQuantity loanBookQuantity = new LoanBookQuantity(12L, 3L);
         BookLoanEntity bookLoanEntity = new BookLoanEntity(1L, loanBookQuantity, user, new Date(), new Date());
 
-        BookLoanResponse response = Mapper.from(bookLoanEntity);
+        BookLoanResponse response = BookLoanMapper.INSTANCE.toResponse(bookLoanEntity);
 
         Assertions.assertEquals(12L, response.bookId());
         Assertions.assertEquals(3L, response.quantity());
@@ -35,7 +35,7 @@ class MapperTests {
         Long quantity = 3L;
         Long millisecondsOfLoan = 7 * 24 * 60 * 60 * 1000L; // 1 week in milliseconds
 
-        BookLoanEntity bookLoanEntity = Mapper.from(bookDTO, quantity, user, loanDate, millisecondsOfLoan);
+        BookLoanEntity bookLoanEntity = BookLoanMapper.toEntity(bookDTO, quantity, user, loanDate, millisecondsOfLoan);
 
         Assertions.assertNotNull(bookLoanEntity);
         Assertions.assertEquals(12L, bookLoanEntity.getLoanBookQuantity().getBookId());

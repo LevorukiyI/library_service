@@ -1,8 +1,9 @@
 package com.modsensoftware.library_service.services;
 
 import com.modsensoftware.library_service.models.User;
+import com.modsensoftware.library_service.repositories.BookLoanRepository;
 import com.modsensoftware.library_service.repositories.UserRepository;
-import com.modsensoftware.library_service.requests.RegisterUserRequest;
+import com.modsensoftware.library_service.dtos.requests.RegisterUserRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,11 +15,13 @@ class UserServiceTests {
 
     private UserRepository userRepository;
     private UserService userService;
+    private BookLoanRepository bookLoanRepository;
 
     @BeforeEach
     void setUp() {
         userRepository = Mockito.mock(UserRepository.class);
-        userService = new UserService(userRepository);
+        bookLoanRepository = Mockito.mock(BookLoanRepository.class);
+        userService = new UserService(userRepository, bookLoanRepository);
     }
 
     @Test

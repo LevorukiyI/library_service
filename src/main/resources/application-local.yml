@@ -5,5 +5,5 @@ spring:
     password: "%Nw8Fm1qc*HXFh3mK}|9GOzATC}8LQrh"
 
 book-service:
-  base-url: http://localhost:8080/books
+  base-url: http://localhost:8083/books
   secret-key: "4Ai+5X3ZuK4J+T44sp0RDL48WeieeIq0boPRJb89MMU="

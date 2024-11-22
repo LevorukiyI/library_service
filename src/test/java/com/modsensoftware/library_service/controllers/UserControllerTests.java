@@ -1,6 +1,6 @@
 package com.modsensoftware.library_service.controllers;
 
-import com.modsensoftware.library_service.requests.RegisterUserRequest;
+import com.modsensoftware.library_service.dtos.requests.RegisterUserRequest;
 import com.modsensoftware.library_service.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,9 +43,8 @@ class UserControllerTests {
 
         doThrow(new RuntimeException("Registration failed")).when(userService).registerUser(request);
 
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            userController.registerUser(request);
-        });
+        RuntimeException thrown = assertThrows(RuntimeException.class,
+                () -> userController.registerUser(request));
 
         assertEquals("Registration failed", thrown.getMessage());
     }

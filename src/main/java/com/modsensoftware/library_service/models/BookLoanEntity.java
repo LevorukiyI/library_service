@@ -23,7 +23,7 @@ public class BookLoanEntity {
     @JoinColumn(name = "loan_book_quantity_id")
     private LoanBookQuantity loanBookQuantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

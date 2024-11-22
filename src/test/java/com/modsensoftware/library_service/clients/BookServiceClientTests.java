@@ -1,6 +1,6 @@
 package com.modsensoftware.library_service.clients;
 
-import com.modsensoftware.library_service.dtos.BookDTO;
+import com.modsensoftware.library_service.clients.dtos.BookDTO;
 import com.modsensoftware.library_service.exceptions.BookServiceUnavailableException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ class BookServiceClientTests {
 
         assertEquals(expectedBook, result.getBody());
         verify(restTemplate).exchange(
-                "http://localhost:8080/book-service/get-book/id/" + bookId,
+                "http://localhost:8080/book-service/" + bookId,
                 HttpMethod.GET,
                 new HttpEntity<>(new HttpHeaders() {{
                     set("x-api-key", "secret-key");
@@ -73,8 +73,7 @@ class BookServiceClientTests {
                 eq(BookDTO.class)
         )).thenThrow(new RestClientException("Service Unavailable"));
 
-        assertThrows(BookServiceUnavailableException.class, () -> {
-            bookServiceClient.getBookById(bookId);
-        });
+        assertThrows(BookServiceUnavailableException.class,
+                () -> bookServiceClient.getBookById(bookId));
     }
 }

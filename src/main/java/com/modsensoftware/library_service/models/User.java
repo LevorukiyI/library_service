@@ -23,6 +23,6 @@ public class User {
     private String subject;
 
     @OneToMany(mappedBy = "user",
-            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<BookLoanEntity> bookLoanEntities;
 }

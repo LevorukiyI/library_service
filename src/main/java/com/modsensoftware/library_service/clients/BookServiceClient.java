@@ -1,6 +1,6 @@
 package com.modsensoftware.library_service.clients;
 
-import com.modsensoftware.library_service.dtos.BookDTO;
+import com.modsensoftware.library_service.clients.dtos.BookDTO;
 import com.modsensoftware.library_service.exceptions.BookServiceUnavailableException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +29,7 @@ public class BookServiceClient {
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         try {
             return restTemplate.exchange(
-                    bookServiceBaseUrl + "/get-book/id/" + bookId,
+                    bookServiceBaseUrl + "/" + bookId,
                     HttpMethod.GET,
                     entity,
                     BookDTO.class
